@@ -4,9 +4,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 
 export const authOptions: NextAuthOptions = {
-    pages: {
-        signIn: '/sign-in',
-    },
+    // pages: {
+    //     signIn: '/sign-in',
+    // },
     providers: [
         CredentialsProvider({
           name: "Credentials",
