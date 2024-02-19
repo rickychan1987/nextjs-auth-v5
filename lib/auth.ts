@@ -7,20 +7,15 @@ import { compare } from "bcrypt";
 
 
 export const authOptions: NextAuthOptions = {
-<<<<<<< HEAD
-    // pages: {
-    //     signIn: '/sign-in',
-    // },
-=======
     adapter: PrismaAdapter(db),
-    secret: process.env.NEXTAUTH_SECRET,
+    secret: process.env.NEXTAUTH_SECRECT,
     session: {
       strategy: 'jwt'
     },
     pages: {
         signIn: '/sign-in',
     },
->>>>>>> 4b6dc90 (updated new)
+
     providers: [
         CredentialsProvider({
           name: "Credentials",
@@ -55,5 +50,14 @@ export const authOptions: NextAuthOptions = {
             }
           }
         })
-      ]
+      ],
+
+    callbacks: {
+      async jwt({ token, user, account, profile, isNewUser }) {
+        return token
+      },
+      async session({ session, user, token }) {
+        return session
+      },
+    }
 }
