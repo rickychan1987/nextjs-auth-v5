@@ -3,9 +3,11 @@ import { authOptions } from "@/lib/auth";
 
 const page = async () => {
   const session = await getServerSession(authOptions);
-  console.log(session);
-
-  return <div>Welcome to Admin</div>;
+  
+  if(session?.user) {
+    return <h2 className="text-2xl">Admin Page - Welcome back {session?.user.username}</h2>
+  }
+  return <h2 className="text-2xl">Please login in to see the info</h2>
 };
 
 export default page;
